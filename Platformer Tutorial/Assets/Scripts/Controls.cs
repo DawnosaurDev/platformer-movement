@@ -32,7 +32,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""cdcbe9f5-cdc3-4a4d-b1f8-0fe58e3d5d45"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""JumpUp"",
