@@ -33,4 +33,5 @@ Now Includes: Dashes, Wall Jumps, Slide and State Machine
 **My Twiiter:** https://twitter.com/DawnosaurDev Keep up with my game dev journey and new platformer mechanics!
 
 Thanks so much for checking this out <3
-  - Dawnosaur 
+
+Dawnosaur 
