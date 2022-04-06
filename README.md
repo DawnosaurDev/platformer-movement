@@ -1,3 +1,5 @@
+**If you get missing script errors see below :D**
+
 # platformer-movement
 
 Everything from the video and now more!
