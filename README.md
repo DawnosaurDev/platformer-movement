@@ -1,4 +1,4 @@
-**If you get missing script errors see below :D**
+** If you get missing script errors see below :D **
 
 # platformer-movement
 
