@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5759d6a660e3ac14dbd9a801bf9d7627, type: 3}
+  m_Name: Super Meat Boy Style
+  m_EditorClassIdentifier: 
+  gravityStrength: -44.444447
+  gravityScale: 1.4814816
+  fallGravityMult: 2
+  maxFallSpeed: 20
+  fastFallGravityMult: 2
+  maxFastFallSpeed: 20
+  runMaxSpeed: 25
+  runAcceleration: 2
+  runAccelAmount: 4
+  runDecceleration: 10
+  runDeccelAmount: 20
+  accelInAir: 1
+  deccelInAir: 0
+  doConserveMomentum: 1
+  jumpHeight: 4.5
+  jumpTimeToApex: 0.45
+  jumpForce: 20
+  jumpCutGravityMult: 4
+  jumpHangGravityMult: 0
+  jumpHangTimeThreshold: 0
+  jumpHangAccelerationMult: 0
+  jumpHangMaxSpeedMult: 0
+  wallJumpForce: {x: 20, y: 20}
+  wallJumpRunLerp: 0.75
+  wallJumpTime: 0.2
+  doTurnOnWallJump: 1
+  slideSpeed: -15
+  slideAccel: 3
+  coyoteTime: 0.2
+  jumpInputBufferTime: 0.2
+  dashAmount: 0
+  dashSpeed: 0
+  dashSleepTime: 0
+  dashAttackTime: 0
+  dashEndTime: 0
+  dashEndSpeed: {x: 0, y: 0}
+  dashEndRunLerp: 0
+  dashRefillTime: 0
+  dashInputBufferTime: 0

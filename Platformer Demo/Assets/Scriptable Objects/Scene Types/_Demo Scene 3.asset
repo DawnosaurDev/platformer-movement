@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c217ff98ff2445b48a67d8a9214f6608, type: 3}
+  m_Name: _Demo Scene 3
+  m_EditorClassIdentifier: 
+  camSize: 9
+  backgroundColor: {r: 0.23313455, g: 0.23511714, b: 0.2924528, a: 1}
+  foregroundColor: {r: 0.048393562, g: 0.040049832, b: 0.11320752, a: 1}
