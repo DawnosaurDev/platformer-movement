@@ -13,7 +13,7 @@ public class PlayerRun : MonoBehaviour
 {
 	//Scriptable object which holds all the player's movement parameters. If you don't want to use it
 	//just paste in all the parameters, though you will need to manuly change all references in this script
-	public PlayerData Data;
+	public PlayerRunData Data;
 
 	#region COMPONENTS
     public Rigidbody2D RB { get; private set; }
@@ -36,7 +36,7 @@ public class PlayerRun : MonoBehaviour
 	//Set all of these up in the inspector
 	[Header("Checks")] 
 	[SerializeField] private Transform _groundCheckPoint;
-	[SerializeField] private Vector2 _groundCheckSize = new Vector2(0.49f, 0.03f);;
+	[SerializeField] private Vector2 _groundCheckSize = new Vector2(0.49f, 0.03f);
 	#endregion
 
 	#region LAYERS & TAGS
@@ -85,32 +85,54 @@ public class PlayerRun : MonoBehaviour
 	{
 		//Calculate the direction we want to move in and our desired velocity
 		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
-        //Calculate difference between current velocity and desired velocity
-		float speedDif = targetSpeed - RB.velocity.x;
 
-		#region Acceleration Rate
+		#region Calculate AccelRate
 		float accelRate;
 
 		//Gets an acceleration value based on if we are accelerating (includes turning) 
-		// or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
+		//or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
 		if (LastOnGroundTime > 0)
-			accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccel : Data.runDeccel;
+			accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
 		else
-			accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccel * Data.accelInAir : Data.runDeccel * Data.deccelInAir;
+			accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount * Data.accelInAir : Data.runDeccelAmount * Data.deccelInAir;
+		#endregion
 
-		//If we want to run but are already going faster than max run speed/
-		if (((RB.velocity.x > targetSpeed && targetSpeed > 0.01f) || (RB.velocity.x < targetSpeed && targetSpeed < -0.01f)) && Data.doKeepRunMomentum)
+		//Not used since no jump implemented here, but may be useful if you plan to implement your own
+		/* 
+		#region Add Bonus Jump Apex Acceleration
+		//Increase are acceleration and maxSpeed when at the apex of their jump, makes the jump feel a bit more bouncy, responsive and natural
+		if ((IsJumping || IsWallJumping || _isJumpFalling) && Mathf.Abs(RB.velocity.y) < Data.jumpHangTimeThreshold)
+		{
+			accelRate *= Data.jumpHangAccelerationMult;
+			targetSpeed *= Data.jumpHangMaxSpeedMult;
+		}
+		#endregion
+		*/
+
+		#region Conserve Momentum
+		//We won't slow the player down if they are moving in their desired direction but at a greater speed than their maxSpeed
+		if(Data.doConserveMomentum && Mathf.Abs(RB.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(RB.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && LastOnGroundTime < 0)
 		{
 			//Prevent any deceleration from happening, or in other words conserve are current momentum
+			//You could experiment with allowing for the player to slightly increae their speed whilst in this "state"
 			accelRate = 0; 
 		}
 		#endregion
 
+		//Calculate difference between current velocity and desired velocity
+		float speedDif = targetSpeed - RB.velocity.x;
 		//Calculate force along x-axis to apply to thr player
+
 		float movement = speedDif * accelRate;
 
 		//Convert this to a vector and apply to rigidbody
-		RB.AddForce(movement * Vector2.right);
+		RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+
+		/*
+		 * For those interested here is what AddForce() will do
+		 * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
+		 * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
+		*/
 	}
 
 	private void Turn()
