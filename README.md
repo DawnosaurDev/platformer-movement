@@ -1,6 +1,6 @@
 # Platformer-Movement
 
-[Watch the Video!](https://youtu.be/KKGdDBFcu0Q)
+[🎬Watch the Video!](https://youtu.be/KKGdDBFcu0Q)
 
 ## 📂Installation
 1. Clone the Project
