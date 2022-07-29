@@ -2,7 +2,7 @@
 ## 📂Installation
 1. Clone the Project
 2. Extract the Zip File
-3. **Either**
+3. **Either:**
   - Import the a PlayerData and Player Movement script into your project 
   - Or Open the Project in Unity
 
