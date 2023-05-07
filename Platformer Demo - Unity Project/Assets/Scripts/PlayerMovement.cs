@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
 		if (!IsDashing && !IsJumping)
 		{
 			//Ground Check
-			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
+			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer)) //checks if set box overlaps with ground
 			{
 				if(LastOnGroundTime < -0.1f)
                 {
@@ -158,8 +158,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			IsJumping = false;
 
-			if(!IsWallJumping)
-				_isJumpFalling = true;
+			_isJumpFalling = true;
 		}
 
 		if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)
@@ -171,8 +170,7 @@ public class PlayerMovement : MonoBehaviour
         {
 			_isJumpCut = false;
 
-			if(!IsJumping)
-				_isJumpFalling = false;
+			_isJumpFalling = false;
 		}
 
 		if (!IsDashing)
@@ -508,6 +506,12 @@ public class PlayerMovement : MonoBehaviour
 	#region OTHER MOVEMENT METHODS
 	private void Slide()
 	{
+		//We remove the remaining upwards Impulse to prevent upwards sliding
+		if(RB.velocity.y > 0)
+		{
+		    RB.AddForce(-RB.velocity.y * Vector2.up,ForceMode2D.Impulse);
+		}
+	
 		//Works the same as the Run but only in the y-axis
 		//THis seems to work fine, buit maybe you'll find a better way to implement a slide into this system
 		float speedDif = Data.slideSpeed - RB.velocity.y;	
