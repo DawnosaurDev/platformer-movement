@@ -20,3 +20,5 @@
 1. In the project window, right-click -> create -> Player Data (at the top)
 2. Now edit the parameters as you like (read the script for more info on each variable)
 3. Drag and Drop it into the appropriate slot in the player, and you're good to go 🎉
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R5NM0X5)
