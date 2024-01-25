@@ -22,3 +22,8 @@
 3. Drag and Drop it into the appropriate slot in the player, and you're good to go 🎉
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R5NM0X5)
+
+## License
+
+[MIT](LICENSE.md) © [Dawnosaur](https://github.com/DawnosaurDev)
+
