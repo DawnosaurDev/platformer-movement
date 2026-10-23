@@ -27,3 +27,4 @@
 
 [MIT](LICENSE.md) © [Dawnosaur](https://github.com/DawnosaurDev)
 
+_Created by Adam Dodhia_
