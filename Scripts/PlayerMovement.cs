@@ -12,7 +12,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	//Scriptable object which holds all the player's movement parameters. If you don't want to use it
-	//just paste in all the parameters, though you will need to manuly change all references in this script
+	//just paste in all the parameters, though you will need to manually change all references in this script
 
 	//HOW TO: to add the scriptable object, right-click in the project window -> create -> Player Data
 	//Next, drag it into the slot in playerMovement on your player
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
 
 	//Variables control the various actions the player can perform at any time.
-	//These are fields which can are public allowing for other sctipts to read them
+	//These are fields which can are public allowing for other scripts to read them
 	//but can only be privately written to.
 	public bool IsFacingRight { get; private set; }
 	public bool IsJumping { get; private set; }
@@ -230,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region INPUT CALLBACKS
-	//Methods which whandle input detected in Update()
+	//Methods which handle input detected in Update()
     public void OnJumpInput()
 	{
 		LastPressedJumpTime = Data.jumpInputBufferTime;
@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
 		float accelRate;
 
 		//Gets an acceleration value based on if we are accelerating (includes turning) 
-		//or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
+		//or trying to decelerate (stop). As well as applying a multiplier if we're airborne.
 		if (LastOnGroundTime > 0)
 			accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
 		else
@@ -284,14 +284,14 @@ public class PlayerMovement : MonoBehaviour
 		if(Data.doConserveMomentum && Mathf.Abs(RB.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(RB.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && LastOnGroundTime < 0)
 		{
 			//Prevent any deceleration from happening, or in other words conserve are current momentum
-			//You could experiment with allowing for the player to slightly increae their speed whilst in this "state"
+			//You could experiment with allowing for the player to slightly increase their speed whilst in this "state"
 			accelRate = 0; 
 		}
 		#endregion
 
 		//Calculate difference between current velocity and desired velocity
 		float speedDif = targetSpeed - RB.velocity.x;
-		//Calculate force along x-axis to apply to thr player
+		//Calculate force along x-axis to apply to the player
 
 		float movement = speedDif * accelRate;
 
@@ -364,7 +364,7 @@ public class PlayerMovement : MonoBehaviour
 	private void Slide()
 	{
 		//Works the same as the Run but only in the y-axis
-		//THis seems to work fine, buit maybe you'll find a better way to implement a slide into this system
+		//This seems to work fine, but maybe you'll find a better way to implement a slide into this system
 		float speedDif = Data.slideSpeed - RB.velocity.y;	
 		float movement = speedDif * Data.slideAccel;
 		//So, we clamp the movement here to prevent any over corrections (these aren't noticeable in the Run)
